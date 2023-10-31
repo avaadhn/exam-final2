@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>
+        Giftos
+    </title>
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="shop_section">
+        <header class="header_section">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="{% url "app1:products" %}">
+                    <div class="logo">
+                        <img src="/static/images/logo.png" alt="">
+                    </div>
+                </a>
+                <a href="{% url "app1:products" %}">
+                    <div class="icon">
+                        <i class='bx bx-home'></i>
+                    </div>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <section class="shop_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+            </div>
+            <div class="row">
+                {% for cart in carts %}
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="{{cart.product.image.url}}" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h6>
+                                    {{cart.product.name}}
+                                </h6>
+                                <h6>
+                                    Price
+                                    <span>
+                                        ${{cart.product.price}}
+                                    </span>
+                                </h6>
+                            </div>
+                            {% if cart.product.label == 'New' %}
+                                <div class="new">
+                                    <span>
+                                        New
+                                    </span>
+                                </div>
+                            {% endif %}
+                            <div class="add">
+                                <a href="{{cart.product.get_url}}">
+                                    <div class="plus">
+                                        <i class='bx bx-plus'></i>
+                                    </div>
+                                </a>
+                                <a href="{{cart.get_url}}">
+                                    <div class="minus">
+                                        <i class='bx bx-minus'></i>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="box">
+                        <div class="up">
+                            <i class='bx bx-wink-smile'></i>
+                            <h6> Enjoy Our <span>Price</span></h6>
+                        </div>
+                        <hr>
+                        <div class="price-box">
+                            <h6>Count <span>{{count}}</span></h6>
+                            <h6>Total <span>{{total}}$</span></h6>
+                        </div>
+                        <div class="btn">
+                            <button>BUY</button>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    </section>
+
+</body>
+
+</html>
